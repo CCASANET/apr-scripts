@@ -14,3 +14,4 @@
 input/*.csv
 output/*.png
 output/*.html
+output/*.csv
