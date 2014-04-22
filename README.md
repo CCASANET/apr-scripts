@@ -1,4 +1,5 @@
 apr-scripts
 ===========
 
-Useful cohort characterizing scripts to be used e.g. for APRs
+Useful cohort characterizing scripts to be used for general purpose for example
+during Annual Progress Reports (APRs)

@@ -6,3 +6,11 @@
 
 # R data files from past sessions
 .Rdata
+.Rproj.user
+
+# Added by Firas
+
+*.Rproj
+input/*.csv
+output/*.png
+output/*.html
