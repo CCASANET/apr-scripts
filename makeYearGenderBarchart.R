@@ -2,6 +2,8 @@ rm(list=ls())
 
 # Data Wrangling
 
+# Date format is different in Peds vs Adults *SHAKE FIST AT KARU* :)
+ 
 # Read adult MID
 mytemp1<-read.csv("input/Adult_MID.csv",stringsAsFactors=FALSE)
 mytemp1$birth_dn.date<-as.Date(mytemp1$birth_dn,format="%d/%m/%Y")
@@ -9,7 +11,7 @@ mytemp1$birth_dn.year<-format(mytemp1$birth_dn.date,"%Y")
 mymid<-mytemp1[,c("patient","site","center","male","birth_dn.year")]
 
 # Read Ped MID
-mytemp2<-read.csv("input//Peds_MID.csv",stringsAsFactors=FALSE)
+mytemp2<-read.csv("input/Peds_MID.csv",stringsAsFactors=FALSE)
 mytemp2$birth_dn.date<-as.Date(mytemp2$birth_dn,format="%m/%d/%Y")
 mytemp2$birth_dn.year<-format(mytemp2$birth_dn.date,"%Y")
 
