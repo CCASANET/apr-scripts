@@ -6,14 +6,21 @@ rm(list=ls())
  
 # Read adult MID
 mytemp1<-read.csv("input/Adult_MID.csv",stringsAsFactors=FALSE)
-mytemp1$birth_dn.date<-as.Date(mytemp1$birth_dn,format="%d/%m/%Y")
+mytemp1$birth_dn.date<-as.Date(mytemp1$birth_d,format="%d/%m/%Y")
 mytemp1$birth_dn.year<-format(mytemp1$birth_dn.date,"%Y")
+
+# FIx because Karu didn't send me PATIENT
+mytemp1$patient = mytemp1$patid
+
 mymid<-mytemp1[,c("patient","site","center","male","birth_dn.year")]
 
 # Read Ped MID
 mytemp2<-read.csv("input/Peds_MID.csv",stringsAsFactors=FALSE)
-mytemp2$birth_dn.date<-as.Date(mytemp2$birth_dn,format="%m/%d/%Y")
+mytemp2$birth_dn.date<-as.Date(mytemp2$birth_d,format="%m/%d/%Y")
 mytemp2$birth_dn.year<-format(mytemp2$birth_dn.date,"%Y")
+
+# Fix because Karu didn't send me PATIENT
+mytemp2$patient=seq(1,dim(mytemp2)[1])
 
 mymid<-rbind(mymid,mytemp2[,c("patient","site","center","male","birth_dn.year")])
 
@@ -38,3 +45,10 @@ legend("topleft", c("Male", "Female"), pch=15,
        col=c("blue","red"), border="black",
        bty="n")
 dev.off()
+
+# Ignore for now
+# mysitenumbers <- table(mymid$center,mymid$male)
+# mysitenumbers <- data.frame(table(mymid$center,mymid$male))
+mysitenumbers <- data.frame(table(mymid$site,mymid$center,mymid$male))
+mysitenumbers <- mysitenumbers[mysitenumbers$Freq>0,]
+write.csv(mysitenumbers,file="output/sitenumbers.csv",row.names=FALSE)
